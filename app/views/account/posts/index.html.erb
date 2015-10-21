@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2 class="text-center"> 我發表的文章 </h2>
+  
+			  <table class="table">
+			    <thead>
+			      <tr>
+			        <th> # </th>
+			        <th> Content </th>
+			        <th> Group name </th>
+			        <th> Last Update </th>
+			      </tr>
+			    </thead>
+			    
+			    <tbody>
+			      <% @posts.each do |post| %>
+			        <tr>
+			         	<td> # </td>
+			         	<td> <%= render_post_content(post) %> </td> 
+			         	<td> <%= post.group.title %> </td>
+			         	<td> <%= post.updated_at.to_s(:long) %> </td>
+			        	<td> <%= link_to("Edit", edit_group_post_path(post.group, post) , class: "btn btn-sm btn-default") %> </td>
+						<td> <%= link_to("Delete", group_post_path(post.group, post), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" }) %> </td>
+			        </tr>
+			      <% end %>
+			    </tbody>
+			  </table>
+		</div>
+	</div>
+</div>
