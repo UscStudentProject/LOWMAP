@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   get 'home' => "pages#index"
 
+  resources :blogs
+
   resources :groups do
     member do
       post :join
