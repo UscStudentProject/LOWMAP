@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  root "groups#index"
+  root "pages#index"
+
+  get 'home' => "pages#index"
 
   resources :groups do
     member do
