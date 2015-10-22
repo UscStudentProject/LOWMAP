@@ -1,0 +1,19 @@
+<!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+			<div class="col-md-8 col-md-offset-2">
+			  <h1>修改文章</h1>
+
+			  <hr>
+			  <%= simple_form_for @blog do |f| %>
+			    <div class="form-blog">
+			      <%= f.input :title, input_html: { class: "form-control"} %>
+			      <%= f.input :categroies, input_html: { class: "form-control"} %>
+			      <%= f.input :content, input_html: { class: "form-control"} %>
+			    </div>
+			    <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+			  <% end %>
+			</div>
+		</div>
+	</div>	
