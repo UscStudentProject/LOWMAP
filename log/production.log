@@ -1,0 +1,59 @@
+D, [2015-10-22T19:08:51.719389 #12377] DEBUG -- :   [1m[36m (1.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+D, [2015-10-22T19:08:51.719873 #12377] DEBUG -- :   [1m[35m (0.2ms)[0m  select sqlite_version(*)
+D, [2015-10-22T19:08:51.721325 #12377] DEBUG -- :   [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+D, [2015-10-22T19:08:51.722304 #12377] DEBUG -- :   [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+I, [2015-10-22T19:08:51.726613 #12377]  INFO -- : Migrating to CreateGroups (20151015045015)
+D, [2015-10-22T19:08:51.727077 #12377] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+D, [2015-10-22T19:08:51.728638 #12377] DEBUG -- :   [1m[35m (0.3ms)[0m  CREATE TABLE "groups" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "description" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+D, [2015-10-22T19:08:51.736083 #12377] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151015045015"]]
+D, [2015-10-22T19:08:51.737327 #12377] DEBUG -- :   [1m[35m (1.0ms)[0m  commit transaction
+I, [2015-10-22T19:08:51.737398 #12377]  INFO -- : Migrating to CreatePosts (20151015084814)
+D, [2015-10-22T19:08:51.737876 #12377] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+D, [2015-10-22T19:08:51.738677 #12377] DEBUG -- :   [1m[35m (0.2ms)[0m  CREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "group_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+D, [2015-10-22T19:08:51.739603 #12377] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20151015084814"]]
+D, [2015-10-22T19:08:51.740719 #12377] DEBUG -- :   [1m[35m (0.9ms)[0m  commit transaction
+I, [2015-10-22T19:08:51.740785 #12377]  INFO -- : Migrating to DeviseCreateUsers (20151018120235)
+D, [2015-10-22T19:08:51.741355 #12377] DEBUG -- :   [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+D, [2015-10-22T19:08:51.742519 #12377] DEBUG -- :   [1m[35m (0.3ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+D, [2015-10-22T19:08:51.743475 #12377] DEBUG -- :   [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+D, [2015-10-22T19:08:51.744126 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+D, [2015-10-22T19:08:51.744663 #12377] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+D, [2015-10-22T19:08:51.745682 #12377] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151018120235"]]
+D, [2015-10-22T19:08:51.746942 #12377] DEBUG -- :   [1m[36m (1.1ms)[0m  [1mcommit transaction[0m
+I, [2015-10-22T19:08:51.747016 #12377]  INFO -- : Migrating to AddNameToUser (20151018122437)
+D, [2015-10-22T19:08:51.747487 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2015-10-22T19:08:51.748248 #12377] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "name" varchar[0m
+D, [2015-10-22T19:08:51.749090 #12377] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151018122437"]]
+D, [2015-10-22T19:08:51.750163 #12377] DEBUG -- :   [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+I, [2015-10-22T19:08:51.750222 #12377]  INFO -- : Migrating to AddUserIdToGroup (20151018130326)
+D, [2015-10-22T19:08:51.750609 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2015-10-22T19:08:51.751237 #12377] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "groups" ADD "user_id" integer[0m
+D, [2015-10-22T19:08:51.752049 #12377] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151018130326"]]
+D, [2015-10-22T19:08:51.753077 #12377] DEBUG -- :   [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+I, [2015-10-22T19:08:51.753135 #12377]  INFO -- : Migrating to AddUserIdToPost (20151018133436)
+D, [2015-10-22T19:08:51.753493 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2015-10-22T19:08:51.754100 #12377] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mALTER TABLE "posts" ADD "user_id" integer[0m
+D, [2015-10-22T19:08:51.754926 #12377] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151018133436"]]
+D, [2015-10-22T19:08:51.755979 #12377] DEBUG -- :   [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
+I, [2015-10-22T19:08:51.756048 #12377]  INFO -- : Migrating to CreateGroupUsers (20151018134247)
+D, [2015-10-22T19:08:51.756475 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2015-10-22T19:08:51.757270 #12377] DEBUG -- :   [1m[36m (0.2ms)[0m  [1mCREATE TABLE "group_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "group_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+D, [2015-10-22T19:08:51.758126 #12377] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151018134247"]]
+D, [2015-10-22T19:08:51.759290 #12377] DEBUG -- :   [1m[36m (1.0ms)[0m  [1mcommit transaction[0m
+I, [2015-10-22T19:08:51.759356 #12377]  INFO -- : Migrating to AddPostsCountToGroup (20151019045141)
+D, [2015-10-22T19:08:51.759753 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2015-10-22T19:08:51.769941 #12377] DEBUG -- :   [1m[36m (9.7ms)[0m  [1mALTER TABLE "groups" ADD "posts_count" integer DEFAULT 0[0m
+D, [2015-10-22T19:08:51.771188 #12377] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151019045141"]]
+D, [2015-10-22T19:08:51.772599 #12377] DEBUG -- :   [1m[36m (1.2ms)[0m  [1mcommit transaction[0m
+I, [2015-10-22T19:08:51.772663 #12377]  INFO -- : Migrating to CreateBlogs (20151022131231)
+D, [2015-10-22T19:08:51.773152 #12377] DEBUG -- :   [1m[35m (0.1ms)[0m  begin transaction
+D, [2015-10-22T19:08:51.774008 #12377] DEBUG -- :   [1m[36m (0.3ms)[0m  [1mCREATE TABLE "blogs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "content" text, "categroies" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) [0m
+D, [2015-10-22T19:08:51.774786 #12377] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20151022131231"]]
+D, [2015-10-22T19:08:51.775855 #12377] DEBUG -- :   [1m[36m (0.9ms)[0m  [1mcommit transaction[0m
