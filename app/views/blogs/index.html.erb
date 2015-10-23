@@ -1,0 +1,47 @@
+<!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Blog Entries Column -->
+            <div class="col-md-8">
+
+                <h1 class="page-header">
+                    開發日誌
+                    <small>我們到底做了什麼</small>
+                </h1>
+                <%= link_to("新增文章", new_blog_path, class: "btn btn-primary pull-right") %>
+                <!-- Blog Post -->
+                <% @blogs.each do |blog| %>
+                <h2>
+                    <a href="<%= blog_path(blog) %>"><%= blog.title %></a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">Start Bootstrap</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> <%= blog.created_at %> </p>
+                <hr>
+                <!-- <img class="img-responsive" src="http://placehold.it/900x300" alt=""> -->
+                <!-- <hr> -->
+                <p><%= blog.content %></p>
+                <a class="btn btn-primary" href="<%= blog_path(blog) %>">繼續閱讀 <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+                <% end %>
+
+                <!-- Pager -->
+                <!-- <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul> -->
+
+            </div>
+
+            <%= render 'sidebar' %>
+
+        </div>
+        <!-- /.row -->
