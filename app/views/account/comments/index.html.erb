@@ -1,0 +1,31 @@
+<div class="container">
+
+    <div class="row">
+    	<div class="col-md-12">
+  
+		  <h2 class="text-center"> 我回應過的文章 </h2>
+		  
+		  <table class="table">
+		    <thead>
+		      <tr>
+		        <th> # </th>
+		        <th> 文章 </th>
+		        <th> 內容 </th>
+		        <th> 最後更新時間 </th>
+		      </tr>
+		    </thead>
+		    
+		    <tbody>
+		      <% @comments.each do |comment| %>
+		        <tr>
+		          <td> # </td>
+		          <td> <%= link_to(comment.blog.title, blog_path(comment.blog)) %> </td> 
+		          <td> <%= comment.content %> </td> 
+		          <td> <%= comment.updated_at %> </td> 
+		        </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		</div>
+    </div>
+</div>
