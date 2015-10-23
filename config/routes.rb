@@ -11,8 +11,12 @@ Rails.application.routes.draw do
 
   get 'home' => "pages#index"
 
-  resources :blogs
+#部落格與回應
+  resources :blogs do
+    resources :comments
+  end
 
+#討論板與文章
   resources :groups do
     member do
       post :join
