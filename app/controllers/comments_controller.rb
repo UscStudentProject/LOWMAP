@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
 	before_action :find_blog
+	before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 	def new
 		@comment = @blog.comments.new
 	end
