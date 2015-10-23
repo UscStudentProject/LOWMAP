@@ -1,0 +1,33 @@
+<div class="container">
+
+    <div class="row">
+    	<div class="col-md-12">
+  
+		  <h2 class="text-center"> 我發表的文章 </h2>
+		  
+		  <table class="table">
+		    <thead>
+		      <tr>
+		        <th> # </th>
+		        <th> 標題 </th>
+		        <th> 內容 </th>
+		        <th> 回應數量 </th>
+		        <th> 最後更新時間 </th>
+		      </tr>
+		    </thead>
+		    
+		    <tbody>
+		      <% @blogs.each do |blog| %>
+		        <tr>
+		          <td> # </td>
+		          <td> <%= link_to(blog.title, blog_path(blog)) %> </td> 
+		          <td> <%= blog.content %> </td> 
+		          <td> <%= blog.comments.size %> </td> 
+		          <td> <%= blog.updated_at %> </td> 
+		        </tr>
+		      <% end %>
+		    </tbody>
+		  </table>
+		</div>
+    </div>
+</div>

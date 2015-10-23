@@ -6,11 +6,12 @@ class CommentsController < ApplicationController
 	end
 	
 	def edit
-		@comment = @blog.comments.find(params[:id])
+		@comment = current_user.comments.find(params[:id])
 	end
 	
 	def create
-	   @comment = @blog.comments.build(comment_params)
+		@comment = @blog.comments.build(comment_params)
+		@comment.author = current_user
 	
 	   if @comment.save
 	     redirect_to blog_path(@blog), notice: "新增回應成功！"
@@ -20,7 +21,7 @@ class CommentsController < ApplicationController
 	end
 	
 	def update
-	   @comment = @blog.comments.find(params[:id])
+	   @comment = current_user.comments.find(params[:id])
 	
 	   if @comment.update(comment_params)
 	     redirect_to blog_path(@blog), notice: "回應修改成功！"
@@ -30,7 +31,7 @@ class CommentsController < ApplicationController
 	end
 	
 	def destroy
-	   @comment = @blog.comments.find(params[:id])
+	   @comment = current_user.comments.find(params[:id])
 	
 	   @comment.destroy
 	   redirect_to blog_path(@blog), alert: "回應已刪除"

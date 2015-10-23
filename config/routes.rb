@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   namespace :account do
     resources :groups
     resources :posts
+    
+    resources :blogs
+    resources :comments
   end
 
   devise_for :users

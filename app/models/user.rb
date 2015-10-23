@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   has_many :groups
   has_many :posts
 
+  has_many :blogs
+  has_many :comments
+
   has_many :group_users
   has_many :participated_groups, through: :group_users, source: :group
 

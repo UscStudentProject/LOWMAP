@@ -10,13 +10,15 @@
 
                 <!-- Title -->
                 <h1><%= @blog.title %></h1>
-
-                <%= link_to("Edit", edit_blog_path, class: "btn btn-primary pull-right") %>
+                
                 <!-- Author -->
                 <p class="lead">
-                    by <a href="#">Start Bootstrap</a>
+                    by <a href="#"><%= @blog.owner.name %></a>
                 </p>
-
+                <% if @blog.editable_by?(current_user) %>
+                    <%= link_to("編輯文章", edit_blog_path, class: "btn btn-primary") %>
+                    <%= link_to("刪除文章", blog_path(@blog),class: "btn btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+                <% end %>
                 <hr>
 
                 <!-- Date/Time -->
@@ -51,11 +53,13 @@
                         </h4>
                         <%= comment.content %>
                     </div>
-                    <%= link_to("編輯回應", edit_blog_comment_path(comment.blog, comment),
-                        class: "btn btn-default btn-xs btn-warning")%>
-                    <%= link_to("刪除回應", blog_comment_path(comment.blog, comment),
-                        class: "btn btn-default btn-xs btn-danger ", method: :delete, 
-                        data: { confirm: "確認刪除？" } )%>
+                    <% if comment.editable_by?(current_user) %>
+                        <%= link_to("編輯回應", edit_blog_comment_path(comment.blog, comment),
+                            class: "btn btn-default btn-xs btn-warning")%>
+                        <%= link_to("刪除回應", blog_comment_path(comment.blog, comment),
+                            class: "btn btn-default btn-xs btn-danger ", method: :delete, 
+                            data: { confirm: "確認刪除？" } )%>
+                        <% end %>
                 </div>
                 <% end %>
             </div>
