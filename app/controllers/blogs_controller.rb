@@ -1,10 +1,11 @@
 class BlogsController < ApplicationController
+	before_action :find_blog
 	def index
 		@blogs = Blog.all
 	end
 
 	def show
-		@blog = Blog.find(params[:id])
+		
 		@comments = @blog.comments
 	end
 
@@ -13,7 +14,7 @@ class BlogsController < ApplicationController
 	end
 	 
 	def edit
-		@blog = Blog.find(params[:id])
+		
 	end
 
 	def create
@@ -27,7 +28,7 @@ class BlogsController < ApplicationController
 	end
 
 	def update
-		@blog = Blog.find(params[:id])
+		
 
 		if @blog.update(blog_params)
 		  redirect_to blogs_path, notice: "修改文章成功"
@@ -37,7 +38,7 @@ class BlogsController < ApplicationController
 	end
 
 	def destroy
-		@blog = Blog.find(params[:id])
+		
 		@blog.destroy
 		redirect_to blogs_path, alert: "文章已刪除"
 	end
@@ -47,4 +48,8 @@ class BlogsController < ApplicationController
 	def blog_params 
 	  params.require(:blog).permit(:title, :categroies, :content)
 	end
+
+	def find_blog
+      @blog = Blog.find(params[:id])
+  	end  
 end

@@ -34,7 +34,7 @@
                 <p><%= @blog.content %></p>
                 <hr>
                 <!-- Comments Form -->
-                <%= link_to("回應", new_blog_comment_path(@blog), class: "btn btn-warning") %>
+                <%= link_to("回應", new_blog_comment_path(@blog), class: "btn btn-info") %>
                 <hr>
                 <!-- Posted Comments -->
 
@@ -51,6 +51,11 @@
                         </h4>
                         <%= comment.content %>
                     </div>
+                    <%= link_to("編輯回應", edit_blog_comment_path(comment.blog, comment),
+                        class: "btn btn-default btn-xs btn-warning")%>
+                    <%= link_to("刪除回應", blog_comment_path(comment.blog, comment),
+                        class: "btn btn-default btn-xs btn-danger ", method: :delete, 
+                        data: { confirm: "確認刪除？" } )%>
                 </div>
                 <% end %>
             </div>
