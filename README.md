@@ -1,6 +1,6 @@
 # LOWMAP
 
-Member: Weifan,MikeThai
+Member: Weifan
 
 
 Ruby version: 2.2.3
