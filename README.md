@@ -1,5 +1,9 @@
 # LOWMAP
 
-Member: Weifan,mikethai,min
+
+
+
+Member: Weifan,mikethai,paul,Min
+
 - Ruby version: 2.2.3
 - Rails version: 4.2.4
