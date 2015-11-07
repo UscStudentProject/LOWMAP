@@ -1,0 +1,101 @@
+
+<%= stylesheet_link_tag 'demo' %>
+	<%= javascript_include_tag 'jquery.min' %>
+
+</head>
+
+<script>
+  $('#edit-search-block-form-1').click(
+    function() {
+      $(this).val("");
+    }
+  )
+  </script>
+  <script type="text/javascript">
+function btn_query(tmpsts,tmpid){
+	// var err_msg = '';
+	// var frm = document.frmQuery;
+	var frm = document.getElementById('q');
+	
+}
+</script>
+<link href="/assets/stylesheets/demo.css.erb" rel="stylesheet">
+<script src="/assets/javascripts/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+//滑鼠移致選項
+$("#myMenu").children().on("mouseenter",function(){
+ //alert(""+$(this).index());
+ var idx=$(this).index();
+	if(idx==0||idx==5||idx==8){
+		if($(this).attr("class")=='c'+idx+' nav1'){
+		    $(this).children().show();
+			$(this).removeClass("c"+idx);
+			$(this).removeClass("nav1").addClass("sel"+idx).show();				
+		}
+	}
+ 
+});
+
+//滑鼠離開選項
+$("#myMenu").children().on("mouseleave",function(){
+var idx=$(this).index();
+	if(idx==0||idx==5||idx==8){	    
+		if($(this).attr("class")=='sel'+idx){            	
+			$(this).removeClass("sel"+idx).addClass("c"+idx).addClass("nav1");	
+            $(this).children().hide();						
+		}
+	}
+ 
+});
+});
+</script>
+</td>
+
+</tr>
+  <body>
+  <table width="1028" align="center">
+    <td width="1" rowspan="7">&nbsp;</td>
+    <td height="86"></td>
+  <tr>
+    <td height="480"  colspan="6">
+    <div class=newMenu>
+    <div class="myPic0"><%= image_tag("c0b.png") %></div>
+    </div>
+   <div id="myMenu" style="margin:0 auto;width:1010px;height:400px;background:url('<%= asset_path("bar.png") %>');position:relative;">
+<div class="c0 nav1">
+	<div style="display:none">
+	<a  href="https://github.com/UscStudentProject/LOWMAP" class="Items" style="position:absolute;top:200px;left:140px;padding:0;width:80px;height:110px;"></a>
+	
+	</div>
+</div>
+<div class="nav1" style="display: none;"></div>
+<div class="nav1" style="display: none;"></div>
+<div class="nav1" style="display: none;"></div>
+<div class="c4 nav1">
+	<div style="display:block">
+		
+	</div>
+</div>
+<div class="c5 nav1">
+	<div style="display:none">
+		<a  href="http://lunch.dataworkplace.net/blogs" class="Items" style="position:absolute;top:230px;left:455px;padding:0;width:110px;height:80px"></a>
+			
+	</div>
+</div>
+<div class="nav1" style="display: none;"></div>
+<div class="nav1" style="display: none;"></div>
+<div class="c8 nav1">
+	<div style="display:none">
+		<a  href="http://lunch.dataworkplace.net/blogs" class="Items" style="position:absolute;top:230px;left:945px;padding:0;width:110px;height:80px"></a>
+	</div>
+</div>
+
+<div class="nav1" style="display: none;"></div>
+<div class="nav1" style="display: none;"></div>
+</div>
+
+
+</body>
+</html>
